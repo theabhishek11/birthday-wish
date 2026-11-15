@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff5f8">
+  <title>Happy Birthday, Tanuu!</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      font-family: system-ui, "Trebuchet MS", sans-serif;
+      color: #56354f;
+      background:
+        radial-gradient(circle at 15% 15%, #ffe0eb, transparent 40%),
+        radial-gradient(circle at 85% 85%, #e6ddff, transparent 40%),
+        #fffaf0;
+    }
+
+    #confetti {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .card {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 560px);
+      padding: clamp(28px, 7vw, 52px);
+      text-align: center;
+      background: #ffffffdf;
+      border: 1px solid white;
+      border-radius: 30px;
+      box-shadow: 0 20px 70px #6c42621c;
+    }
+
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: block;
+      animation: appear 0.45s ease;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 30px;
+      background: #fff0f4;
+      color: #c94f76;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .cake {
+      margin: 22px 0 10px;
+      font-size: 76px;
+      animation: bob 2.5s ease-in-out infinite;
+    }
+
+    .heart {
+      margin-top: 18px;
+      font-size: 58px;
+      animation: beat 1.2s infinite;
+    }
+
+    h1 {
+      margin: 18px 0 12px;
+      color: #633758;
+      font-size: clamp(2.3rem, 9vw, 3.8rem);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+    }
+
+    h1 span {
+      color: #ff6f91;
+    }
+
+    .message {
+      max-width: 390px;
+      margin: 20px auto 0;
+      color: #725e73;
+      font-size: 1.08rem;
+      line-height: 1.7;
+    }
+
+    .wish {
+      margin: 22px auto 0;
+      padding: 16px;
+      border-radius: 18px;
+      background: #fff8e7;
+      color: #78623d;
+      line-height: 1.65;
+    }
+
+    .letter {
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #fff0f5, #fff8e7);
+      color: #685467;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      text-align: left;
+    }
+
+    .letter p {
+      margin: 0 0 14px;
+    }
+
+    .letter p:last-child {
+      margin-bottom: 0;
+    }
+
+    button {
+      min-height: 52px;
+      margin-top: 27px;
+      padding: 0 26px;
+      border: 0;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #ff7095, #ec5d9a);
+      color: white;
+      font: inherit;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 9px 20px #ed5d9a40;
+      transition: transform 0.18s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+    }
+
+    button:focus-visible {
+      outline: 3px solid #633758;
+      outline-offset: 4px;
+    }
+
+    .signature,
+    .from {
+      margin: 20px 0 0;
+      color: #a18ca2;
+      font-size: 0.9rem;
+    }
+
+    .back-button {
+      background: #fff0f4;
+      color: #c94f76;
+      box-shadow: none;
+    }
+
+    @keyframes bob {
+      50% { transform: translateY(-9px) rotate(2deg); }
+    }
+
+    @keyframes beat {
+      50% { transform: scale(1.12); }
+    }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 420px) {
+      body { padding: 13px; }
+      .card { padding: 26px 20px; border-radius: 24px; }
+      .letter { padding: 17px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+
+  <main class="card">
+    <!-- Pehla page -->
+    <section id="firstPage" class="page active">
+      <div class="tag">A little birthday surprise</div>
+      <div class="cake" aria-hidden="true">🎂</div>
+
+      <h1>Happy Birthday<br><span>Tanuu!</span></h1>
+
+      <p class="message">
+        Aaj ka din sirf tumhara hai—smile karo, cake khao,
+        aur apne special day ko full enjoy karo! 🥳
+      </p>
+
+      <div class="wish">
+        Meri best wishes tumhare saath hain. Neeche click karo—
+        tumhare liye ek birthday message hai! 💖
+      </div>
+
+      <button id="celebrateButton" type="button">
+        🎉 &nbsp; Celebrate!
+      </button>
+
+      <p class="from">Made By ABHI.., just for you montii..💖</p>
+    </section>
+
+    <!-- Celebrate dabane par dikhne wala doosra page -->
+    <section id="wishPage" class="page">
+      <div class="tag">From your friend, with lots of love</div>
+      <div class="heart" aria-hidden="true">💖</div>
+
+      <h1>Happy Birthday,<br><span>Supriyaa..! 🎂</span></h1>
+
+      <div class="letter">
+        <p> Tanuu.., happy birthday! 🥳</p>
+
+        <p>
+         Having a friend like you makes even ordinary days feel special. Your laughter, your fun-loving nature, 
+          and the way you’re always there for me mean more than you know.
+        </p>
+
+        <p>
+          Dua hai tumhara yeh naya saal dher saari khushiyan, success,
+          pyaar aur amazing memories lekar aaye. Enjoy your day ,
+          aur hamesha aise hi khilkhilati raho! ✨
+        </p>
+
+        <p>
+           🎉 Hope your day is full of laughter, good food, and great memories with your friends. Have the best time celebrating! 🎂🥳.
+              Have the best birthday ever! 💕
+        </p>
+      </div>
+
+      <p class="signature">Lots of love,<br>your friend....ABHI 💌</p>
+
+      <button id="backButton" class="back-button" type="button">
+        ←Click to Birthday page par 
+      </button>
+    </section>
+  </main>
+
+  <script>
+    const firstPage = document.getElementById("firstPage");
+    const wishPage = document.getElementById("wishPage");
+
+    document.getElementById("celebrateButton").addEventListener("click", () => {
+      firstPage.classList.remove("active");
+      wishPage.classList.add("active");
+      burstConfetti(200);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    document.getElementById("backButton").addEventListener("click", () => {
+      wishPage.classList.remove("active");
+      firstPage.classList.add("active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    const canvas = document.getElementById("confetti");
+    const ctx = canvas.getContext("2d");
+    const colors = [
+      "#ff6f91", "#ffc857", "#a78bfa",
+      "#65d6c4", "#ff9671", "#f7a8d8"
+    ];
+
+    let pieces = [];
+    let animationFrame = 0;
+    let width = 0;
+    let height = 0;
+    let pixelRatio = 1;
+
+    function resizeCanvas() {
+      pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+      width = window.innerWidth;
+      height = window.innerHeight;
+
+      canvas.width = width * pixelRatio;
+      canvas.height = height * pixelRatio;
+      canvas.style.width = width + "px";
+      canvas.style.height = height + "px";
+
+      ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+    }
+
+    function burstConfetti(count) {
+      for (let i = 0; i < count; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = 2 + Math.random() * 7;
+
+        pieces.push({
+          x: width * (0.2 + Math.random() * 0.6),
+          y: height * 0.2,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed - 2,
+          size: 4 + Math.random() * 7,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          life: 100 + Math.random() * 60,
+          rotation: Math.random() * 3,
+          spin: (Math.random() - 0.5) * 0.2
+        });
+      }
+
+      if (!animationFrame) {
+        drawConfetti();
+      }
+    }
+
+    function drawConfetti() {
+      ctx.clearRect(0, 0, width, height);
+      pieces = pieces.filter(piece => piece.life > 0 && piece.y < height + 20);
+
+      for (const piece of pieces) {
+        piece.x += piece.vx;
+        piece.y += piece.vy;
+        piece.vy += 0.11;
+        piece.rotation += piece.spin;
+        piece.life--;
+
+        ctx.save();
+        ctx.translate(piece.x, piece.y);
+        ctx.rotate(piece.rotation);
+        ctx.globalAlpha = Math.min(1, piece.life / 20);
+        ctx.fillStyle = piece.color;
+        ctx.fillRect(
+          -piece.size / 2,
+          -piece.size / 3,
+          piece.size,
+          piece.size * 0.65
+        );
+        ctx.restore();
+      }
+
+      if (pieces.length) {
+        animationFrame = requestAnimationFrame(drawConfetti);
+      } else {
+        animationFrame = 0;
+      }
+    }
+
+    window.addEventListener("resize", resizeCanvas, { passive: true });
+    resizeCanvas();
+
+    // Page khulte hi halka confetti
+    setTimeout(() => burstConfetti(100), 300);
+  </script>
+</body>
+</html>
